@@ -1,14 +1,22 @@
 # NYU_final_project
 
 
+# GIT Commands
+``` bash
+
+git checkout <branch>
+git add <foo> <bar>
+git commit -m "message"
+git push origin master
 
 
+```
 
 
 
 # For Development
 
-```
+``` bash
 
 setup_dev_environment () {
     #sudo apt install virtualenv postgresql
