@@ -8,6 +8,16 @@ def blog():
     #we want people to be able to comment on our posts.
     return render_template("blog.html")
 
+@app.route("/add", methods=["POST"])
+def add_entry():
+    #add session test
+    #db = get_db()
+    #db.execute('insert into entries (title, text) values (?,?)',
+    #           [request.form['title'], request.form['text']])
+    #db.commit()
+    flash('New entery was successfully posted')
+    return redirect(url_for('blog'))
+
 @app.route("/resume",methods=["GET"])
 def resume():
     #we are going to be returning a PDF
