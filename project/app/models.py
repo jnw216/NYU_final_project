@@ -21,7 +21,7 @@ class User(db.Model):
 	
     def __init__(self,user_id,password):
         self.user_id = user_id
-        self.password = hashlib.sha256(password.encode("utf-8")).hexdigest()
+        self.password = password
 
 class BlogEntry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
