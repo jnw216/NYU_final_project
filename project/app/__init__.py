@@ -12,7 +12,7 @@ password="1234"
 app.config["SECRET_KEY"] = "testing"
 app.config["SQLALCHEMY_DATABASE_URI"] = "postgres://"+username+":"+password+"@localhost/final_project_data"
 db = SQLAlchemy(app)
-migrate = Migrate(app,db)
+migrate = Migrate(app, db)
 manager = Manager(app)
 manager.add_command('db',MigrateCommand)
 manager.add_command("shell",REPL())
