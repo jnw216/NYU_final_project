@@ -25,10 +25,12 @@ class User(db.Model):
 
 class BlogEntry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    entry_name = db.Column(db.String)
     entry = db.Column(db.String)
     timestamp = db.Column(db.DateTime)
 
-    def __init__(self,entry,timestamp):
+    def __init__(self,entry_name,entry,timestamp):
+        self.entry_name = entry_name
         self.entry = entry
         self.timestamp = timestamp
 

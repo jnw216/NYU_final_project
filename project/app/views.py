@@ -1,13 +1,31 @@
 from app import app, db
 from flask import request, render_template,redirect, url_for
 import json
-from app.models import User
+from app.models import User, BlogEntry
 import hashlib
+from datetime import datetime
 
 @app.route("/blog",methods=["GET","POST"])
 def blog():
     #we want people to be able to comment on our posts.
-    return render_template("blog.html")
+    return render_template("blog.html", blog_entries=BlogEntry.query.all())
+
+@app.route("/grab_entry/<entry_name>",methods=["GET","POST"])
+def grab_entry(entry_name):
+    blog_entry = BlogEntry.query.filter_by(entry_name=entry_name).first()
+    return render_template("render_entry.html",blog_entry=blog_entry.entry)
+
+@app.route("/write_entry",methods=["GET","POST"])
+def write_entry():
+    if request.method=="POST":
+        title = request.form.get("title")
+        body = request.form.get("body")
+        blog_entry = BlogEntry(title, body, datetime.now())
+        db.session.add(blog_entry)
+        db.session.commit()
+        return render_template("blog.html",blog_entries=BlogEntry.query.all())
+    else:
+        return render_template("write_entry.html")
 
 @app.route("/resume",methods=["GET"])
 def resume():
