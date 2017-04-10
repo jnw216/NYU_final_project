@@ -18,11 +18,14 @@ def grab_entry(entry_name):
 @app.route("/write_entry",methods=["GET","POST"])
 def write_entry():
     if request.method=="POST":
+        #Get something from the user
         title = request.form.get("title")
         body = request.form.get("body")
+        #Save it to the database
         blog_entry = BlogEntry(title, body, datetime.now())
         db.session.add(blog_entry)
         db.session.commit()
+        #go somewhere else
         return render_template("blog.html",blog_entries=BlogEntry.query.all())
     else:
         return render_template("write_entry.html")
