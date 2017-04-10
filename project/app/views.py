@@ -1,6 +1,7 @@
 from app import app, db
-from flask import request, render_template,redirect, url_for
+from flask import request, render_template,redirect, url_for, send_from_directory
 import json
+import os
 from app.models import User, BlogEntry
 import hashlib
 from datetime import datetime
@@ -45,7 +46,8 @@ def resume():
     #we are going to be returning a PDF
     #OR a very stylized html page
     #OR we could do both
-    return render_template()
+    src_dir =  os.path.abspath(os.path.dirname(__file__)) + "/static/"  ##### #/resume.pdf"
+    return  send_from_directory(src_dir,'resume.pdf')
 
 @app.route("/about_me", methods=["GET"])
 def about_me():
