@@ -4,3 +4,5 @@ flask-migrate
 gunicorn
 psycopg2
 flask-cors
+flask-security
+flask-markdown

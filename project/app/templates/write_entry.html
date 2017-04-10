@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title></title>
+</head>
+
+<body>
+
+<p> You can write a new entry here.  Just fill in the title and the body.</p>
+
+<form method=post action="{{ url_for('write_entry') }}">
+<p>Title</p>
+<input type="text" id="title" name="title" placeholder="Title Goes Here" required>
+<p>Body</p>
+<textarea rows="15" cols="50" id="body" name="body" placeholder="Put your blog entry here..." required></textarea>
+<br />
+<button type="submit">Submit Entry</button>
+</form>
+
+</body>
+</html>
