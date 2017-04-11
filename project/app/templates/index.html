@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-	<title></title>
+
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
 
-<p> This is the splash page for our website.</p>
+<p> Please sign in.</p>
 
 <form method=post action="{{ url_for('sign_in') }}">
 <p>Email address</p>
@@ -20,5 +22,10 @@
 {% if login_attempt %}
 <p> Login Attempt: {{login_attempt}} </p>
 {% endif %}
+
+<script src="{{url_for('static',filename='js/jquery.js') }}"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="{{url_for('static', filename='js/bootstrap.min.js') }}"></script>
 </body>
 </html>
