@@ -7,7 +7,7 @@
 
 <p> This is the list of blog entries: </p>
 {% for entry in blog_entries %}
-	<p><a href="http://localhost:5000/grab_entry/{{entry.entry_name}}">{{entry.entry_name}}</a></p>
+	<p><a href="{{ url_for('grab_entry', entry_name=entry.entry_name) }}">{{entry.entry_name}}</a></p>
 {% endfor %}
 
 <p><a href="{{ url_for('write_entry') }}">Would you like to write an entry?  Click here!</a></p>
