@@ -6,6 +6,14 @@ from app.models import User, BlogEntry
 import hashlib
 from datetime import datetime
 
+@app.route("/site_index",methods=["GET","POST"])
+def site_index():
+    dicter = {}
+    dicter["/blog"] = "http://localhost:5000/blog"
+    dicter["/about_me"] = "http://localhost:5000/about_me"
+    dicter["/index"] = "http://localhost:5000/"
+    return json.dumps(dicter)
+
 @app.route("/blog",methods=["GET","POST"])
 def blog():
     #we want people to be able to comment on our posts.
