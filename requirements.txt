@@ -6,3 +6,6 @@ psycopg2
 flask-cors
 flask-security
 flask-markdown
+elasticsearch
+lxml.html
+requests
