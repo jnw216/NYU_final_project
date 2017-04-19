@@ -9,6 +9,11 @@
 
 <body>
 
+<form action="{{ url_for('search')}}" method=post>
+	<input type="text" id="query" name="query" placeholder="I like cs...">
+	<input type=submit>
+</form>
+
 <p> Please sign in.</p>
 
 <form method=post action="{{ url_for('sign_in') }}">

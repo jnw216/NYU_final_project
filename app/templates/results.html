@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+
+<body>
+<div id="content">
+
+{% if results %}
+
+<h4>Results</h4>
+	<p>{{ num_results }} results</p>
+
+<div id="container" class="row">
+
+{% for elem in results %}
+
+ <p><label>Link: </label> <a href="{{elem[1]}}">{{elem[0]}}</a></p>
+
+</div>
+{% endfor %}
+
+{% endif %}
+
+</div>
+
+</body>
+</html>

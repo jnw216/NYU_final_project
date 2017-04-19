@@ -5,6 +5,10 @@ import os
 from app.models import User, BlogEntry
 import hashlib
 from datetime import datetime
+from elasticsearch import Elasticsearch
+
+host = "http://localhost:9200"
+es = Elasticsearch(host)
 
 @app.route("/site_index",methods=["GET","POST"])
 def site_index():
@@ -62,6 +66,7 @@ def about_me():
     return render_template("about_me.html")
 
 @app.route("/", methods=["GET","POST"])
+@app.route("/index",methods=["GET","POST"])
 def index():
     #you want to allow people to contact you from the website
     return render_template("index.html")
@@ -92,3 +97,12 @@ def sign_up():
 @app.route("/analytics",methods=["GET","POST"])
 def analytics():
     return render_template("analytics.html")
+
+@app.route('/search', methods=['GET','POST'])
+def search():
+    query = request.form.get("query")
+    results = es.search(index="search",body={"query":{"match": {"body":query}}})
+    routes_to_return = list(set([elem["_source"]["route"] for elem in results["hits"]["hits"]]))
+    urls_to_return = ["http://localhost:5000"+elem for elem in routes_to_return]
+    results = list(zip(routes_to_return,urls_to_return))
+    return render_template('results.html', results=results, num_results=len(results))
